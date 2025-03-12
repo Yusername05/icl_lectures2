@@ -154,10 +154,34 @@ this leaves us exactly:\[
 which is obvious by expanding out $\partial \sigma$ before appplying $P$.
 \end{prf}
 \end{thrm}
+Our formulation of homotopy invariance is atually a case of a slightly more general construction.
+\begin{dfn}
+    Two morphisms of chain complexes $f_\bullet,g_\bullet:A_\bullet\rightarrow B_\bullet$ are called \textbf{chain homotopic} if there exists some family $P_n:A_n\rightarrow B_{n+1}$ such that $p-q = \partial P + P\partial$. %TODO: add the chain homotopy diagram
+\end{dfn}
+\begin{prop}
+    Chain homotopic maps induce the same maps on homology.
+    \begin{prf}
+        Exercise.
+    \end{prf}
+\end{prop}
+So if some map $h:X\rightarrow Y$ is a homotopy equivalence, the induced map will be an isomorphism.
 
 %excision, homologies agree on CW-complexes
 
 \subsection{Excision}
+
+\begin{thrm}[Excision]
+    Given $Z\subset A \subset X$ with $\bar{Z}\subset \mathring{A}$, the inclusion of pairs $(X/Z,A/Z)\hookrightarrow (X,A)$ induces an isomorphism of relative homology $H_n(X/Z,A/Z)\cong H_n(X,A)$.
+\end{thrm}
+There is an obvious equivalent formulation of the excision theorem that seems a bit more palatable: if $A,B\subset X$ such that $X=\mathring{A}\cup\mathring{B}$ then the inclusion $(B,A\cap B)\hookrightarrow (X,A)$ induces an isomorphism on relative homology.
+
+To prove this theorem we will use the following result without proof.
+\begin{prop}
+    Given a collection $\cU=\{U_\alpha\}$ of subsets of $X$ that covers $X$ we can form,\[
+        C_n^\cU:=\{\text{$n$-chains in  $X$ where each simplex is in on $U_\alpha$}
+    \] then $i:C_\bullet^\cU\rightarrow(X) C_\bullet(X)$ is a \textbf{chain homotopy equivalence}, which means there exists some $s:C_\bullet(X)\rightarrow C_\bullet^\cU(X)$ such that $i\circ s$ and $s\circ i$ are both chain homotopic to the identity.
+\end{prop}
+the idea is that we can subdivide simplices that overlap the sheet in our open cover (by something called barycentric subdivision) until each simplex only lies in one sheet.
 
 %more excision
 
