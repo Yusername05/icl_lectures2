@@ -70,7 +70,6 @@ inducing a corresponding long exact sequence in homology which is getting closer
 %relative homology and homotopy invariance
 
 \subsection{Homotopy invariance}
-\newpage
 \begin{thrm}[Homotopy invariance]
     If $f,g:X\rightarrow Y$ are homotopic maps, then $f_*=g_*$.
     \begin{prf}
@@ -171,21 +170,72 @@ So if some map $h:X\rightarrow Y$ is a homotopy equivalence, the induced map wil
 \subsection{Excision}
 
 \begin{thrm}[Excision]
-    Given $Z\subset A \subset X$ with $\bar{Z}\subset \mathring{A}$, the inclusion of pairs $(X/Z,A/Z)\hookrightarrow (X,A)$ induces an isomorphism of relative homology $H_n(X/Z,A/Z)\cong H_n(X,A)$.
+    Given $Z\subset A \subset X$ with $\bar{Z}\subset \mathring{A}$, the inclusion of pairs $(X\setminus Z,A\setminus Z)\hookrightarrow (X,A)$ induces an isomorphism of relative homology $H_n(X\setminus Z,A\setminus Z)\cong H_n(X,A)$.
 \end{thrm}
 There is an obvious equivalent formulation of the excision theorem that seems a bit more palatable: if $A,B\subset X$ such that $X=\mathring{A}\cup\mathring{B}$ then the inclusion $(B,A\cap B)\hookrightarrow (X,A)$ induces an isomorphism on relative homology.
 
 To prove this theorem we will use the following result without proof.
 \begin{prop}
-    Given a collection $\cU=\{U_\alpha\}$ of subsets of $X$ that covers $X$ we can form,\[
+    Given a collection $\cU=\{U_\alpha\}$ of subsets of $X$ whose interiors cover $X$ we can form,\[
         C_n^\cU:=\{\text{$n$-chains in  $X$ where each simplex is in on $U_\alpha$}
     \] then $i:C_\bullet^\cU\rightarrow(X) C_\bullet(X)$ is a \textbf{chain homotopy equivalence}, which means there exists some $s:C_\bullet(X)\rightarrow C_\bullet^\cU(X)$ such that $i\circ s$ and $s\circ i$ are both chain homotopic to the identity.
 \end{prop}
 the idea is that we can subdivide simplices that overlap the sheet in our open cover (by something called barycentric subdivision) until each simplex only lies in one sheet.
 
-%more excision
+Continuing with the proof skets: if we have such $A,B\subset X$ with $\mathring{A}\cup\mathring{B}=X$ then we can take $\cU=\{A,B\}$ in the above and get $C_n^\cU(X)=C_n(A)\oplus C_n(B) \subseteq C_n(X)$, this inclusion gives:\[
+    C_\bullet^\cU(X,A)=\frac{C_\bullet^\cU(X)}{C_\bullet^\cU(A)} = \frac{C_\bullet^\cU(X)}{C_\bullet(A)} \hookrightarrow \frac{C_\bullet(X)}{C_\bullet(A)} = C(X,A)
+\]
+which we know is a chain homotopy equivalence. And, by using the second isomorphism theorem, we have: \[
+    \frac{C_n(B)}{C_n(A\cap B)} = \frac{C_n(B)}{C_n(A)\cap C_n(B)} \cong \frac{C_n(A)\oplus C_n(B)}{C_n(A)} = \frac{C_n^\cU(X)}{C_n(A)} = C_n^\cU(X,A)
+\]
+the composition of which induces the isomorphism of homology:\[
+    H_n(B,A\cap B) \cong H_n(X,A)
+\]
+we are finally approaching the end of our epic journey towards the long exact sequence in homology.
+\begin{lem}
+    For $X$ a topological space and $x_0\in X$ there is an isomorphism $H_*(X,\{x_0\})\cong\tilde{H}_*(X)$
+    \begin{prf}
+        Exercise, it should fall straight out of the long exact sequence of $(X,\{x_0\})$.
+    \end{prf}
+\end{lem}
+Note that in this proof we didn't have to assume $(X,x_0)$ are a good pair.
+\begin{prop}
+    If $(X,A)$ is a good pair then the quotient map $q:(X,A)\rightarrow(X/A,A/A)$ induces an isomorphism in homology: $H_n(X,A)\cong H_n(X/A,A/A) \cong \tilde{H}_n(X/A)$.
+    \begin{prf}
+        We're going to consider the diagram:
+        \[\begin{tikzcd}
+            H_n(X,A) \arrow[r, "1"] \arrow[d, "4", swap] & H_n(X,V) \arrow[r, "5"] \arrow[d] & H_n(X\setminus A, V\setminus A) \arrow[d, "3"]\\
+            H_n(X/A,A/A) \arrow[r, "2", swap] & H_n(X/A,V/A) \arrow[r, "6", swap] & H_n(X/A\setminus A/A, V/A\setminus A/A)
+        \end{tikzcd}\]
+        where $V$ is some neighbourhood that retracts to $A$ from the fact that $(X,A)$ are good. The strategy will be to show $4$ is an isomorphism by showing all of the remaining maps are and writing $4$ as their composition.
+        
+        For $5$ and $6$ these maps are both the isomorphisms from the respective applications of excision.
 
-%degree of a map and cellulary homology
+        For $1$ we will consider the long exact sequence for the triple $(X,V,A)$ induced by the short exact sequence of chain maps: \[
+        0\rightarrow C_\bullet(V,A) \xrightarrow{\iota} C_\bullet(X,A) \xrightarrow{q} C_\bullet(X,V) \rightarrow 0
+        \]
+        this long exact sequence looks like: \[
+        \cdots\rightarrow \cancelto{_0}{H_n(V,A)} \xrightarrow{\iota_*} H_n(X,A) \xrightarrow{q*} H_n(X,V) \xrightarrow{\partial} \cancelto{_0}{H_{n-1}(V,A)} \rightarrow \cdots
+        \] %TODO: fix that horrible typesetting
+        Here $i:A\rightarrow V$ is a homotopy equivalence so $H_n(V,A)\cong 0$; thus $1$, which is in fact $q_*$, is an isomorphism. This same argument applies to $H_n(V/A,A/A)$, so the long exact sequence for $(X/A,V/A,A/A)$ also gives isomorphisms $H_n(X/A,V/A)\cong H_n(X/A,A/A)$ which is $2$. The quotient map $q:X\rightarrow X/A$ is a homeomorphism when restricted to $X/A$ or $V/A$ so $3$ is induced by a homeomorphism of pairs, thus is an isomorphism.
+    \end{prf}
+\end{prop}
+If we consider the wedge product of a collection of good pointed spaces $(X,A)=\bigvee_\alpha(X_\alpha,x_\alpha)$, which is just a quotient of the disjoint union, then we get the long isomorphism: 
+\begin{align*}
+    \tilde{H}_n\pr{\bigvee_\alpha X_\alpha} \cong \tilde{H}_n(X/A)\cong H_n(X,A) &= \\[-5pt]
+    = H_n\pr{\bigsqcup_\alpha X_\alpha,\bigsqcup_\alpha\{x_\alpha\}} = \bigoplus_\alpha H_n(X_\alpha,x_\alpha)\cong \bigoplus_\alpha \tilde{H}_n(X_\alpha,x_\alpha) &\cong \bigoplus_\alpha\tilde{H}_n(X_\alpha)
+\end{align*}
+
+\begin{thrm}[Dimension invariance]
+    If $\bR^n\cong\bR^m$ then $n=m$.
+    \begin{prf}
+        Exercise, we know the homology groups of the sphere.
+    \end{prf}
+\end{thrm}
+This next theorem is the final tool before we can prove the equivalence of simplicial and singular homology on $\Delta$-complexes.
+\begin{thrm}[Five lemma]
+    
+\end{thrm}
 
 %more cellulary homology
 
