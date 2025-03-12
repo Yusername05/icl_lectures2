@@ -10,7 +10,7 @@
 %% Digrams
 \usepackage{tikz, tikz-cd, float} % Commutative Diagrams
 \usetikzlibrary{decorations.pathmorphing} % for squiggly arrows in tikzcd
-\usetikzlibrary{calc,math,backgrounds,fit} % general stuff
+\usetikzlibrary{calc,math,arrows,backgrounds,fit,patterns,patterns.meta} % general stuff
 \usepackage{nicematrix}
 \usepackage{graphicx}
 %% General formatting
@@ -43,7 +43,15 @@
             sorting=nyt,
             citestyle=alphabetic]{biblatex}
 
-%Environments
+%Colors
+%%Bright
+\definecolor{TQB0}{RGB}{187,187,187}
+\definecolor{TQB1}{RGB}{68,119,170}
+\definecolor{TQB2}{RGB}{102,204,238}
+\definecolor{TQB3}{RGB}{34,136,51}
+\definecolor{TQB4}{RGB}{204,187,68}
+\definecolor{TQB5}{RGB}{238,102,119}
+\definecolor{TQB6}{RGB}{170,51,119}
 
 %Math fonts
 %%Mathbb{
@@ -188,7 +196,8 @@
 
 % Brackets
 
-\newcommand{\br}{\del} % Brackets
+\newcommand{\pr}[1]{\left( #1 \right)} %parenthesis
+\newcommand{\br}[1]{\left[ #1 \right]} %parenthesis
 \newcommand{\abr}[1]{\left\langle #1 \right\rangle} % Angle brackets
 \newcommand{\aabr}[1]{\left|\left\langle #1 \right\rangle\right|} %angle then abs
 \newcommand{\fbr}[1]{\left\lfloor #1 \right\rfloor} % Floor brackets
