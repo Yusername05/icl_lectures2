@@ -21,7 +21,6 @@
  left=20mm,
  top=20mm,
  } % Page shape
-\usepackage{parskip} % So that paragraphs look nice
 \usepackage{fancyhdr}
 \usepackage[dvipsnames]{xcolor} % Fancy Colours
 %% Custom theorem formatting
@@ -257,93 +256,25 @@
 
 % Operators {
   \newcommand\newoperator[1]{\ifcsdef{#1}{\cslet{#1}{\relax}}{}\csdef{#1}{\operatorname{#1}}}
-  \newoperator{ab}    % Abelian
-  \newoperator{AG}    % Affine geometry
-  \newoperator{alg}   % Algebraic
-  \newoperator{Ann}   % Annihilator
-  \newoperator{area}  % Area
-  \newoperator{Aut}   % Automorphism
-  \newoperator{BC}    % Bott-Chern
-  \newoperator{Br}    % Brauer group
-  \newoperator{card}  % Cardinality
-  \newoperator{ch}    % Characteristic
-  \newoperator{Cl}    % Class
-  \newoperator{coker} % Cokernel
-  \newoperator{col}   % Column
-  \newoperator{Cond}
-  \newoperator{cone}
-  \newoperator{Corr}  % Correspondence
-  \newoperator{diam}  % Diameter
-  \newoperator{Disc}  % Discriminant
-  \newoperator{dom}   % Domain
-  \newoperator{Eig}   % Eigenvalue
-  \newoperator{Emb}   % Embedding
-  \newoperator{End}   % Endomorphism
-  \newoperator{Ext}   % Ext
-  \newoperator{fd}    % Flat dimension
-  \newoperator{fin}   % Finite
-  \newoperator{Fix}   % Fixed
-  \newoperator{Frac}  % Fraction
-  \newoperator{Frob}  % Frobenius
-  \newoperator{Fun}   % Function
-  \newoperator{Gal}   % Galois
-  \newoperator{gd}    % Global dimension
-  \newoperator{GL}    % General linear
-  \newoperator{Ham}   % Hamming
-  \newoperator{Hom}   % Homomorphism
-  \newoperator{Homeo} % Homeomorphism
-  \newoperator{id}    % Identity
-  \newoperator{im}    % Image
-  \newoperator{Ind}   % Index
-  \newoperator{Inn}   % Inner automorphisms
-  \newoperator{ker}   % Kernel
-  \newoperator{lcm}   % Least common multiple
-  \newoperator{lgd}   % Left global dimension
-  \newoperator{Mat}   % Matrix
-  \newoperator{mult}  % Multiplicity
-  \newoperator{new}   % New
-  \newoperator{Nm}    % Norm
-  \newoperator{Ob}    % Objects
-  \newoperator{old}   % Old
-  \newoperator{op}    % Opposite
-  \newoperator{ord}   % Order
-  \newoperator{Pay}   % Payley
-  \newoperator{pd}    % Projective dimension
-  \newoperator{PG}    % Projective geometry
-  \newoperator{PGL}   % Projective general linear
-  \newoperator{prim}  % Primitive
-  \newoperator{PSL}   % Projective special linear
-  \newoperator{rad}   % Radical
-  \newoperator{ran}   % Range
-  \newoperator{Res}   % Residue
-  \newoperator{rgd}   % Right global dimension
-  \newoperator{rk}    % Rank
-  \newoperator{row}   % Row
-  \newoperator{sgn}   % Sign
-  \newoperator{Sing}  % Singular
-  \newoperator{SK}    % Skeleton
-  \newoperator{SL}    % Special linear
-  \newoperator{SO}    % Special orthogonal
-  \newoperator{sp}    % Span
-  \newoperator{Spec}  % Spectrum
-  \newoperator{srg}   % Strongly regular graph
-  \newoperator{Stab}  % Stabiliser
-  \newoperator{Star}  % Star
-  \newoperator{supp}  % Support
-  \newoperator{Sym}   % Symmetric
-  \newoperator{Tor}   % Tor
-  \newoperator{tors}  % Torsion
-  \newoperator{Tot}
-  \newoperator{Tr}    % Trace
-  \newoperator{trdeg} % Transcendence degree
-  \newoperator{wgd}   % Weak global dimension
-  \newoperator{wt}    % Weight
-  \newoperator{Wr}
+%% categories / general
+  \newoperator{coeq}
+  \newoperator{eq}
+  \newoperator{Hom} %homsets
+  \newoperator{id}
+  \newoperator{im}
+  \newoperator{Mor} %class of all morphisms
+%% homotopy theory
+  \newoperator{const} %constant path
+  \newoperator{Fib}
+  \newoperator{Cof} %(co)fibrations in a model category
+  \newoperator{Proj}
+  \newoperator{Inj}
+  \newoperator{fact}
 %}
 
 % Theorem environments {
   \newtheoremstyle{definitionstyle}
-  {}% above thm
+  {-5pt}% above thm
   {}% below thm
   {}% body font
   {}% space to indent
@@ -362,6 +293,7 @@
       bottomline = false,
       rightline = false,
       skipabove = 5pt,
+      skipbelow = -5pt,
       footnoteinside = true
   ]{dfn}{Def}[section]
   \newmdtheoremenv[
@@ -421,7 +353,7 @@
   ]{eg}{Eg}[section]
 
   \newtheoremstyle{bigtheoremstyle}
-  {}% above thm
+  {-5pt}% above thm
   {}% below thm
   {}% body font
   {}% space to indent
@@ -455,14 +387,14 @@
   ]{conj}{Conjecture}
 
   \newtheoremstyle{proofstyle}%
-  {}% above thm
+  {-5pt}% above thm
   {}% below thm
   {}% body font
   {}% space to indent
   {\itshape}% head font
-  {}% punctuation between head and body
+  {.}% punctuation between head and body
   { }% space after head
-  {\thmname{#1} \thmnote{#3}.}
+  {\thmname{#1}\thmnote{#3}}
   \theoremstyle{proofstyle}
   \newmdtheoremenv[
       linewidth = 1pt,
@@ -481,6 +413,7 @@
   \AtEndEnvironment{prf}{\null\hfill\qedsymbol}
 %}
 
+\renewcommand\labelitemi{-}
 \MakePerPage{footnote}
 \pagestyle{fancy}
 \lhead{\module}

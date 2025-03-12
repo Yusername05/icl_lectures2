@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+\usepackage{../style/header}
+
+
+\begin{document}
+
+\newlength{\edgelentgh}
+\setlength{\edgelentgh}{3cm}
+
+\renewcommand*\thesection{\arabic{section}}
+\lhead{Algebraic Topology}
+
+\section{Homotopy}
+
+%we quickly recap some constructions from topology and essentially give all the (co)limits.
+
+%define paths, homotopies and the fundamental group and show its a group
+
+%start with the fundamental group of the circle, define covering spaces and deck transformations
+
+%various lifting properties and the proof of the fundamental group of the circle. induced homomorphisms, functoriality and categories
+
+%degree of covering and fta
+
+%galois correspondence
+
+%free product and wedge product
+
+%seifert van kampen theorem and cw complexes
+
+%group presentation and generators and cw complex of a group
+
+\section{Homology}
+
+%simplicial and singular homology
+
+%functoriality
+
+%reduced homology and long exact sequence of homology
+
+\subsection{Relative homology}
+
+We're building towards some sort of long exact sequence of homology:\[
+    \cdots \rightarrow \tilde{H}_n(A)\rightarrow \tilde{H}_n(X)\rightarrow \tilde{H}_n(X/A)\rightarrow \cdots
+\]
+so we need to work with some $(X,A)$ where $A$ is a subspace of $X$.
+
+\begin{dfn}
+    For $A$ a subspace of $X$ we define the \textbf{relative chain complex} $C_n(X,A):= C_n(X)/C_n(A)$ where the normal boundary operator $\partial_n:C_n(X)\rightarrow C_{n-1}(X)$ sends $C_n(A)$ to $C_{n-1}(A)$ so induces a well-defined boundary operator: \[
+        \bar{\partial}_n:C_n(X,A)\rightarrow C_{n-1}(X,A) \qquad c + C_n(A) \mapsto \partial_n(c) + C_{n-1}(A)
+    \]
+    Showing this is well-defined and $\bar{\partial}^2=0$ is left as an exercise. \qed
+\end{dfn}
+Now we have a chain complex we should obviously take its homology groups to get:
+
+\begin{dfn}
+    For the same $(X,A)$ the \textbf{relative homology groups} are: \[
+    H_n(X,A) := \frac{\ker(\bar{\partial}_n)}{\im(\bar{\partial}_{n+1})} \quad
+    \genfrac{}{}{0pt}{}{\text{(relative cycles)\hspace{22pt}}}{\text{(relative boundaries)}}
+    \]
+\end{dfn}
+
+\begin{exc}
+    TODO: relative cyclic diagram
+\end{exc}
+This gives us a nice short exact sequence of chain complexes: \[
+    0\rightarrow C_\bullet(A)\xrightarrow{i_\#} C_\bullet(X) \rightarrow C_\bullet(X,A)\rightarrow 0
+\]
+inducing a corresponding long exact sequence in homology which is getting closer to our goal. We need to show there's an isomorphism between these relative homology groups and the reduced homology groups, which is true under mild conditions on the pair $(X,A)$. However, this requires lots of machinery.
+%relative homology and homotopy invariance
+
+\subsection{Homotopy invariance}
+
+\begin{thrm}[Homotopy invariance]
+    If $f,g:X\rightarrow Y$ are homotopic maps, then $f_*=g_*$.
+\end{thrm}
+TODO: prism diagram
+
+we want to divide this in
+
+%excision, homologies agree on CW-complexes
+
+\subsection{Excision}
+
+%more excision
+
+%degree of a map and cellulary homology
+
+%more cellulary homology
+
+%more cellular homology for RPn
+
+\end{document}
