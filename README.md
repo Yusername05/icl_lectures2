@@ -1,2 +1,1 @@
-# latextemplates
-Some templates for my latex documents
+These are some notes my from my undergrad at imperial college.
