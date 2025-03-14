@@ -18,7 +18,7 @@
 
 %start with the fundamental group of the circle, define covering spaces and deck transformations
 
-%various lifting properties and the proof of the fundamental group of the circle. induced homomorphisms, functoriality and categories
+%various lifting propositionerties and the proof of the fundamental group of the circle. induced homomorphisms, functoriality and categories
 
 %degree of covering and fta
 
@@ -45,24 +45,24 @@ We're building towards some sort of long exact sequence of homology:\[
 \]
 so we need to work with some $(X,A)$ where $A$ is a subspace of $X$.
 
-\begin{dfn}
+\begin{definition}
     For $A$ a subspace of $X$ we define the \textbf{relative chain complex} $C_n(X,A):= C_n(X)/C_n(A)$ where the normal boundary operator $\partial_n:C_n(X)\rightarrow C_{n-1}(X)$ sends $C_n(A)$ to $C_{n-1}(A)$ so induces a well-defined boundary operator: \[
         \bar{\partial}_n:C_n(X,A)\rightarrow C_{n-1}(X,A) \qquad c + C_n(A) \mapsto \partial_n(c) + C_{n-1}(A)
     \]
     Showing this is well-defined and $\bar{\partial}^2=0$ is left as an exercise. \qed
-\end{dfn}
+\end{definition}
 Now we have a chain complex we should obviously take its homology groups to get:
 
-\begin{dfn}
+\begin{definition}
     For the same $(X,A)$ the \textbf{relative homology groups} are: \[
     H_n(X,A) := \frac{\ker(\bar{\partial}_n)}{\im(\bar{\partial}_{n+1})} \quad
     \genfrac{}{}{0pt}{}{\text{(relative cycles)\hspace{22pt}}}{\text{(relative boundaries)}}
     \]
-\end{dfn}
+\end{definition}
 
-\begin{exc}
+\begin{exercise}
     %TODO: relative cyclic diagram
-\end{exc}
+\end{exercise}
 This gives us a nice short exact sequence of chain complexes: \[
     0\rightarrow C_\bullet(A)\xrightarrow{i_\#} C_\bullet(X) \rightarrow C_\bullet(X,A)\rightarrow 0
 \]
@@ -70,7 +70,7 @@ inducing a corresponding long exact sequence in homology which is getting closer
 %relative homology and homotopy invariance
 
 \subsection{Homotopy invariance}
-\begin{thrm}[Homotopy invariance]
+\begin{theorem}[Homotopy invariance]
     If $f,g:X\rightarrow Y$ are homotopic maps, then $f_*=g_*$.
     \begin{prf}
     The homotopy $F_t$ gives us a family of simplices in $Y$ \textit{continuously} interpolating between $f\sigma$ and $g\sigma$:
@@ -152,34 +152,34 @@ this leaves us exactly:\[
 \]
 which is obvious by expanding out $\partial \sigma$ before appplying $P$.
 \end{prf}
-\end{thrm}
+\end{theorem}
 Our formulation of homotopy invariance is atually a case of a slightly more general construction.
-\begin{dfn}
+\begin{definition}
     Two morphisms of chain complexes $f_\bullet,g_\bullet:A_\bullet\rightarrow B_\bullet$ are called \textbf{chain homotopic} if there exists some family $P_n:A_n\rightarrow B_{n+1}$ such that $p-q = \partial P + P\partial$. %TODO: add the chain homotopy diagram
-\end{dfn}
-\begin{prop}
+\end{definition}
+\begin{proposition}
     Chain homotopic maps induce the same maps on homology.
     \begin{prf}
         Exercise.
     \end{prf}
-\end{prop}
+\end{proposition}
 So if some map $h:X\rightarrow Y$ is a homotopy equivalence, the induced map will be an isomorphism.
 
 %excision, homologies agree on CW-complexes
 
 \subsection{Excision}
 
-\begin{thrm}[Excision]
+\begin{theorem}[Excision]
     Given $Z\subset A \subset X$ with $\bar{Z}\subset \mathring{A}$, the inclusion of pairs $(X\setminus Z,A\setminus Z)\hookrightarrow (X,A)$ induces an isomorphism of relative homology $H_n(X\setminus Z,A\setminus Z)\cong H_n(X,A)$.
-\end{thrm}
+\end{theorem}
 There is an obvious equivalent formulation of the excision theorem that seems a bit more palatable: if $A,B\subset X$ such that $X=\mathring{A}\cup\mathring{B}$ then the inclusion $(B,A\cap B)\hookrightarrow (X,A)$ induces an isomorphism on relative homology.
 
 To prove this theorem we will use the following result without proof.
-\begin{prop}
+\begin{proposition}
     Given a collection $\cU=\{U_\alpha\}$ of subsets of $X$ whose interiors cover $X$ we can form,\[
         C_n^\cU:=\{\text{$n$-chains in  $X$ where each simplex is in on $U_\alpha$}
     \] then $i:C_\bullet^\cU\rightarrow(X) C_\bullet(X)$ is a \textbf{chain homotopy equivalence}, which means there exists some $s:C_\bullet(X)\rightarrow C_\bullet^\cU(X)$ such that $i\circ s$ and $s\circ i$ are both chain homotopic to the identity.
-\end{prop}
+\end{proposition}
 the idea is that we can subdivide simplices that overlap the sheet in our open cover (by something called barycentric subdivision) until each simplex only lies in one sheet.
 
 Continuing with the proof skets: if we have such $A,B\subset X$ with $\mathring{A}\cup\mathring{B}=X$ then we can take $\cU=\{A,B\}$ in the above and get $C_n^\cU(X)=C_n(A)\oplus C_n(B) \subseteq C_n(X)$, this inclusion gives:\[
@@ -192,14 +192,14 @@ the composition of which induces the isomorphism of homology:\[
     H_n(B,A\cap B) \cong H_n(X,A)
 \]
 we are finally approaching the end of our epic journey towards the long exact sequence in homology.
-\begin{lem}
+\begin{lemma}
     For $X$ a topological space and $x_0\in X$ there is an isomorphism $H_*(X,\{x_0\})\cong\tilde{H}_*(X)$
     \begin{prf}
         Exercise, it should fall straight out of the long exact sequence of $(X,\{x_0\})$.
     \end{prf}
-\end{lem}
+\end{lemma}
 Note that in this proof we didn't have to assume $(X,x_0)$ are a good pair.
-\begin{prop}
+\begin{proposition}
     If $(X,A)$ is a good pair then the quotient map $q:(X,A)\rightarrow(X/A,A/A)$ induces an isomorphism in homology: $H_n(X,A)\cong H_n(X/A,A/A) \cong \tilde{H}_n(X/A)$.
     \begin{prf}
         We're going to consider the diagram:
@@ -219,23 +219,80 @@ Note that in this proof we didn't have to assume $(X,x_0)$ are a good pair.
         \] %TODO: fix that horrible typesetting
         Here $i:A\rightarrow V$ is a homotopy equivalence so $H_n(V,A)\cong 0$; thus $1$, which is in fact $q_*$, is an isomorphism. This same argument applies to $H_n(V/A,A/A)$, so the long exact sequence for $(X/A,V/A,A/A)$ also gives isomorphisms $H_n(X/A,V/A)\cong H_n(X/A,A/A)$ which is $2$. The quotient map $q:X\rightarrow X/A$ is a homeomorphism when restricted to $X/A$ or $V/A$ so $3$ is induced by a homeomorphism of pairs, thus is an isomorphism.
     \end{prf}
-\end{prop}
+\end{proposition}
 If we consider the wedge product of a collection of good pointed spaces $(X,A)=\bigvee_\alpha(X_\alpha,x_\alpha)$, which is just a quotient of the disjoint union, then we get the long isomorphism: 
 \begin{align*}
     \tilde{H}_n\pr{\bigvee_\alpha X_\alpha} \cong \tilde{H}_n(X/A)\cong H_n(X,A) &= \\[-5pt]
     = H_n\pr{\bigsqcup_\alpha X_\alpha,\bigsqcup_\alpha\{x_\alpha\}} = \bigoplus_\alpha H_n(X_\alpha,x_\alpha)\cong \bigoplus_\alpha \tilde{H}_n(X_\alpha,x_\alpha) &\cong \bigoplus_\alpha\tilde{H}_n(X_\alpha)
 \end{align*}
 
-\begin{thrm}[Dimension invariance]
+\begin{theorem}[Dimension invariance]
     If $\bR^n\cong\bR^m$ then $n=m$.
     \begin{prf}
         Exercise, we know the homology groups of the sphere.
     \end{prf}
-\end{thrm}
+\end{theorem}
 This next theorem is the final tool before we can prove the equivalence of simplicial and singular homology on $\Delta$-complexes.
-\begin{thrm}[Five lemma]
-    
-\end{thrm}
+\begin{theorem}[Five lemma]
+    Given the following commutative diagram of abeliang groups:\[\begin{tikzcd}
+        A \arrow[r, "f"] \arrow[d, "\alpha"] &
+        B \arrow[r, "g"] \arrow[d, "\beta"] &
+        C \arrow[r, "h"] \arrow[d, "\gamma"] &
+        D \arrow[r, "k"] \arrow[d, "\delta"] &
+        E \arrow[d, "\varepsilon"] \\
+        A' \arrow[r, "f'", swap] &
+        B' \arrow[r, "g'", swap] &
+        C' \arrow[r, "h'", swap] &
+        D' \arrow[r, "k'", swap] &
+        E'
+    \end{tikzcd}\]
+    if both rows are exact and $\alpha,\beta,\delta,\varepsilon$ are all isomorphisms, then $\gamma$ is also an isomorphism.
+    \begin{prf}
+        We prove this with two different \textit{four lemmas}:\[
+        (1)\quad
+        \begin{tikzcd}
+            A \arrow[r, "f"] \arrow[d, "\alpha", swap] &
+            B \arrow[r, "g"] \arrow[d, "\beta", swap] &
+            C \arrow[r, "h"] \arrow[d, "\gamma"] &
+            D \arrow[d, "\delta"] \\
+            A' \arrow[r, "f'", swap] &
+            B' \arrow[r, "g'", swap] &
+            C' \arrow[r, "h'", swap] &
+            D'
+        \end{tikzcd}
+        \qquad \qquad
+        (2)\quad
+        \begin{tikzcd}
+            B \arrow[r, "g"] \arrow[d, "\beta", swap] &
+            C \arrow[r, "h"] \arrow[d, "\gamma", swap] &
+            D \arrow[r, "k"] \arrow[d, "\delta"] &
+            E \arrow[d, "\varepsilon"] \\
+            B' \arrow[r, "g'", swap] &
+            C' \arrow[r, "h'", swap] &
+            D' \arrow[r, "k'", swap] &
+            E'
+        \end{tikzcd}
+        \]
+    For $(1)$ we assume both rows are exact; $\beta,\delta$ are mono; and $\alpha$ is epi, and show $\gamma$ is mono:
+    \begin{itemize}
+        \item have $c\in C$ such that $\gamma(c)=0\in C'$ so $\delta h(c) = h'\gamma(c) = 0$ and as $\delta$ is mono, $h(c)=0$
+        \item so $c\in \ker h = \im g$, there exists $b\in B$ with $c=g(b)$ and $g'(\beta(b)) = \gamma(g(b)) = \gamma(c) = 0$
+        \item so $\beta(b)\in\ker g'=\im f'$, there exists $a'\in A'$ with $f'(a') = \beta(b)$
+        \item $\alpha$ epi $\implies$ there exists $a\in A$ with $a' = \alpha(a)$ and $\beta(b) = f'(\alpha(a)) = \beta(f(a))$
+        \item $\beta$ mono $\implies b=f(a)$ so $c=g(b) = f(g(a)) = 0$
+    \end{itemize} 
+    For $(2)$ we assume both rows are exact; $\beta,\delta$ are epi; and $\varepsilon$ is mono, and show $\gamma$ is epi:
+    \begin{itemize}
+        \item have $c'\in C'$; as $\delta$ is epi there is a $d\in D$ with $\delta(d)=h'(c')$
+        \item $\varepsilon (k(d)) = k'\delta(d) = k'h'(c) = 0$; as $\varepsilon$ is mono, $k(d) = 0$
+        \item so $d\in\ker k = \im h$, there exists $c\in C$ with  $h(c) = d$; so $h'(\gamma(c))\delta(h(c)) = \delta(b) = c'$
+        \item so $c'-\gamma(c)\in\ker h' = \im g'$, there is $b'\in B'$ with $g'(b')=c'-\gamma(c)$
+        \item as $\beta$ is epi, there is $b\in B$ with $\beta(b) = b'$; so $\gamma(g(b)) = g'(\beta(b)) = c'-\gamma(c)$
+        \item so $c'=\gamma(g(b))+\gamma(c) = \gamma(g(b) + c)$
+    \end{itemize} 
+    therefore $\gamma$ is both mono and epi, and thus an isomorphism.
+    \end{prf}
+\end{theorem}
 
 %more cellulary homology
 
