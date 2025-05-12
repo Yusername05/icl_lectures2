@@ -31,6 +31,7 @@
 %% Misc
 \usepackage{perpage} %Changing counters
 \usepackage[utf8]{inputenc}
+\setlength{\parindent}{0pt}
 %% Referencing
 \usepackage{hyperref,nameref,cleveref,enumitem} % for references, hyperlinks
 \usepackage[backend=biber,
@@ -284,8 +285,8 @@
 
 % Theorem environments {
   \newtheoremstyle{definitionstyle}
-  {-5pt}% above thm
-  {}% below thm
+  {0pt}% above thm
+  {0pt}% below thm
   {}% body font
   {}% space to indent
   {\bf}% head font
@@ -325,7 +326,8 @@
       topline = false,
       bottomline = false,
       rightline = false,
-      skipabove = 5pt,
+      skipabove = 0pt,
+      skipbelow = -5pt,
       footnoteinside = true
   ]{lemma}{Lemma}[section]
   \newmdtheoremenv[
@@ -396,31 +398,38 @@
       footnoteinside = true
   ]{conjecture}{Conjecture}
 
+  \let\proof\relax
+  \let\endproof\relax
+
   \newtheoremstyle{proofstyle}%
   {-5pt}% above thm
-  {}% below thm
+  {5pt}% below thm
   {}% body font
-  {}% space to indent
+  {0pt}% space to indent
   {\itshape}% head font
   {.}% punctuation between head and body
   { }% space after head
-  {\thmname{#1}\thmnote{#3}}
+  {\ifstrempty{#3}{\thmname{#1}}{\thmnote{#3}}}
   \theoremstyle{proofstyle}
   \newmdtheoremenv[
       linewidth = 1pt,
-      leftmargin = 0pt,
+      leftmargin = -6pt,
       rightmargin = 0pt,
       linecolor = Black,
       topline = false,
       bottomline = false,
       rightline = false,
       skipabove = 5pt,
+      skipbelow = 15pt,
       footnoteinside = true,
-  ]{prf}{Proof}[section]
+      innerleftmargin = 5pt,
+      innertopmargin = 1pt,
+      innerbottommargin = 1pt,
+  ]{proof}{Proof}[section]
 
   \usepackage{etoolbox}
 
-  \AtEndEnvironment{prf}{\null\hfill\qedsymbol}
+  \AtEndEnvironment{proof}{\null\hfill\qedsymbol}
 %}
 
 \renewcommand\labelitemi{-}
