@@ -59,9 +59,62 @@ Now we can show \textbf{Top} is (co)complete,
 \end{proposition}
 I'm going to declare that by requiring all of these maps be basepoint preserving the result works in $\textbf{Top}_*$ as well, without checking it.
 
-%we quickly recap some constructions from topology and essentially give all the (co)limits.
+\begin{definition}
+    The (co)limits in \textbf{Top} look like:
+    \begin{itemize}
+        \item The empty set $\emptyset$ is the initial objects; and the singleton, denoted $\text{pt}=\{*\}$, is the final object.
+        \item The product is the cartesian product with the \textit{product topology}; the coproduct is the disjoint union.
+        \item The equalise is just the set-theoretic equalise with the subspace topology; while the coequaliser is the set-theoretic coequalise with the \textit{quotient topology}. For some $A\subseteq X$ the coequaliser of the inclusion and the constant map to some $a\in A$ looks like $X$ with $A$ collapsed down to a point, normally written $X/A$.
+        \item The pushout: \[
+        \begin{tikzcd}
+            A 
+                \arrow[r, "g"] 
+                \arrow[d, "f", swap] 
+                \arrow[dr, phantom, very near end, "\ulcorner"] 
+                &
+            Y 
+                \arrow[d]
+                \\
+            X 
+                \arrow[r] 
+                &
+            X \sqcup_A Y
+        \end{tikzcd}
+        \] is the glueing of the images of $A$ under $f$ and $g$, when $f,g$ are inclusions this looks like just identifying the two copies of $A$ in the disjoint union.
+    \end{itemize}
+\end{definition}
 
-%define paths, homotopies and the fundamental group and show its a group
+Some notable examples of these (co)limits are: $ZX := X\times I$, the \textbf{cylinder} over $X$; $CX := ZX/(X\times 1)$ the \textbf{cone} over $X$; $\Sigma X := CX/(X\times 0)$ the \textbf{suspension} over $X$. When we want these spaces to stay pointed we use $\Sigma X / (x_0\times I)$ and similarly for the cone.
+
+A special case of the pushout is $(ZX) \sqcup_X Y$ where we glue $X\times \{0\}$ to its image under some $f:X\rightarrow Y$. This is called the \textbf{cylinder of $f$} and is sometimes denoted $\Cyl(f)$. If we use $CX$ instead of $ZX$ we get hte \textbf{cone of $f$} denoted $\Con(f)$.
+
+\begin{definition}
+    I'll write $Y^X := C(X,Y) := \Hom_\textbf{Top}(X,Y)$, this is a topological space with the \textbf{compact-open topology} which is given by a basis of sets $W(K,U)$ the set of continuous functions $f:X\rightarrow Y$ with $f(K)\subseteq U$ for some compact $K\subseteq X$ and open $U\subseteq Y$.
+\end{definition}
+
+\begin{proposition}
+    When $X,Y,Z$ are hausdorff and locally compact, the map: \[
+        (x \mapsto f) \mapsto ( (x,y) \mapsto f(y)) \ : \ C(X,C(Y,Z)) \rightarrow C(X\times Y, Z)
+    \] is a homeomorphism.\begin{proof}
+         First, consider the evaluation map:\[
+         \text{ev}:C(Y,Z)\times Y \rightarrow Z \quad (f,y)\mapsto f(y)
+         \] and take $V$ open in $Z$, I want to show $\text{ev}$ is continuous so I consider \[
+         \text{ev}^{-1}(V) = \{(f,y) : f(y)\in V\}
+         \] I choose some $(f_0(y_0))\in V^{-1}$, as $Y$ is locally compact I can find a compact $K\subset Y$ with $y_0\in K^\circ$, and have $f_0(K)\subset V$ by restricting $K$ if necessary with $K' = \overline{f_0^{-1}(V)\cap K^\circ}$ a closed subset of $K$ so compact. Now for any $f\in W(K,V)$ and $y\in K^\circ$ we'll have $f(x)\in V$ thus $W(K,V)\times K^\circ\subset \text{ev}^{-1}(V)$ which is open. We've found an open neighbourhood of $(f_0,y_0)$ chosen arbitrarily within $\text{ev}^{-1}(V)$, thus $\text{ev}$ is continuous.
+
+        Now, for some continuous $F:X\times Y \rightarrow Z$, consider the transposed map $\tilde{F}:X\rightarrow C(Y,Z)$ by $\tilde{F}(x)(y) = F(x,y)$. To show this is continuous, take $W(K,U)\subset C(Y,Z)$ and observe: \[
+        \tilde{F}^{-1}(W(K,U)) = \{x \in X F(\{x\}\times K)\subseteq U\} = p_X\br{(X\times K) \cap F^{-1}(U)}
+        \] as $p_X: X\times K \rightarrow X$ is an open map, this is open. Thus $\tilde{F}$ is continuous.
+        
+        Finally, we have to check the assignment $\Phi(F) = \tilde{F}$ is continuous this seems daunting, but by taking $W(L,W(K,U))$ a basic open in $C(X,C(Y,Z))$:\[
+        \Phi^{-1}(W(L,W(K,U))) = \{F:X\times Y\rightarrow Z \ | \ \tilde{F}(L)\subseteq W(K,U)\} = W(L\times K, U)
+        \] a basic open in $C(X\times Y, Z)$.
+
+        So we have two continuous maps $\Phi:C(X\times Y, Z) \rightarrow C(X,C(Y,Z))$ and $\Psi:C(X,C(Y,Z))\rightarrow C(X\times Y, Z)$ by $F\mapsto ((x,y) \mapsto \text{ev}(F(x),y))$; these can be checked to be mutual inverses.
+    \end{proof}
+\end{proposition}
+
+\subsection{Paths and Homotopies}
 
 %start with the fundamental group of the circle, define covering spaces and deck transformations
 
